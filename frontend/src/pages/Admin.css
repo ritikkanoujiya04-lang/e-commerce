@@ -1,0 +1,148 @@
+.admin{
+  min-height: 100vh;
+  background: #0f172a;
+  padding: 140px 20px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.admin-container{
+  width: 100%;
+  max-width: 800px;
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(99,102,241,0.3);
+}
+
+.admin-container h1{
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 36px;
+}
+
+.admin-container form{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-container input,
+.admin-container textarea{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: #0f172a;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.admin-container textarea{
+  height: 120px;
+  resize: none;
+}
+
+.admin-container input::placeholder,
+.admin-container textarea::placeholder{
+  color: #94a3b8;
+}
+
+.admin-container form button{
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #6366f1;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-container form button:hover{
+  background: #7c3aed;
+  transform: translateY(-3px);
+}
+
+.admin-products{
+  margin-top: 40px;
+}
+
+.admin-products h2{
+  color: white;
+  margin-bottom: 20px;
+}
+
+.admin-product{
+  background: #0f172a;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.admin-product span{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.admin-product div{
+  display: flex;
+  gap: 10px;
+}
+
+.admin-product div button{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* EDIT BUTTON */
+
+.admin-product div button:first-child{
+  background: #2563eb;
+}
+
+.admin-product div button:first-child:hover{
+  background: #1d4ed8;
+}
+
+/* DELETE BUTTON */
+
+.admin-product div button:last-child{
+  background: #dc2626;
+}
+
+.admin-product div button:last-child:hover{
+  background: #b91c1c;
+}
+
+@media(max-width:768px){
+
+  .admin-container{
+    padding: 25px;
+  }
+
+  .admin-container h1{
+    font-size: 28px;
+  }
+
+  .admin-product{
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+}

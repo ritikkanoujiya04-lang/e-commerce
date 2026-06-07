@@ -1,0 +1,39 @@
+import { Navigate } from "react-router-dom";
+
+const ProtectedRoute = ({
+  children,
+}) => {
+
+  const token =
+    localStorage.getItem("token");
+
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  if (!token) {
+
+    return (
+      <Navigate to="/login" />
+    );
+
+  }
+
+  // SIRF ADMIN EMAIL
+
+  if (
+    user?.email !==
+    "ritikkanoujiya04@gmail.com"
+  ) {
+
+    return (
+      <Navigate to="/" />
+    );
+
+  }
+
+  return children;
+
+};
+
+export default ProtectedRoute;

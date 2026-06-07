@@ -1,0 +1,139 @@
+.extra-page{
+
+  min-height: 100vh;
+
+  background:
+  linear-gradient(
+    135deg,
+    #0f172a,
+    #111827
+  );
+
+  padding: 140px 80px 70px;
+
+  color: white;
+
+}
+
+
+/* MAIN HEADING */
+
+.extra-page h1{
+
+  font-size: 60px;
+
+  font-weight: 700;
+
+  margin-bottom: 35px;
+
+  color: white;
+
+}
+
+
+/* SUB HEADING */
+
+.extra-page h2{
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  margin-top: 40px;
+
+  margin-bottom: 25px;
+
+  color: #e2e8f0;
+
+}
+
+
+/* PARAGRAPH */
+
+.extra-page p{
+
+  font-size: 22px;
+
+  line-height: 1.9;
+
+  color: #cbd5e1;
+
+  margin-bottom: 28px;
+
+  font-weight: 500;
+
+  max-width: 1000px;
+
+}
+
+
+/* LIST */
+
+.extra-page ul{
+
+  padding-left: 25px;
+
+  margin-bottom: 30px;
+
+}
+
+.extra-page li{
+
+  font-size: 21px;
+
+  line-height: 1.8;
+
+  color: #f1f5f9;
+
+  margin-bottom: 16px;
+
+  font-weight: 600;
+
+}
+
+
+/* CARD EFFECT */
+
+.extra-page{
+
+  border-top:
+  1px solid rgba(255,255,255,0.08);
+
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  .extra-page{
+
+    padding: 120px 20px 50px;
+
+  }
+
+  .extra-page h1{
+
+    font-size: 42px;
+
+  }
+
+  .extra-page h2{
+
+    font-size: 28px;
+
+  }
+
+  .extra-page p{
+
+    font-size: 18px;
+
+  }
+
+  .extra-page li{
+
+    font-size: 18px;
+
+  }
+
+}

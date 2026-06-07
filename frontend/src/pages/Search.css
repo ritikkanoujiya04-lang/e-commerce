@@ -1,0 +1,119 @@
+.search-page{
+  min-height: 100vh;
+
+  background: #0f172a;
+
+  padding: 130px 70px 60px;
+}
+
+/* TOP */
+
+.search-top{
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+
+.search-top h1{
+  color: white;
+
+  font-size: 50px;
+
+  margin-bottom: 25px;
+}
+
+.search-top input{
+  width: 100%;
+
+  max-width: 500px;
+
+  height: 60px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 14px;
+
+  padding: 0 20px;
+
+  font-size: 18px;
+}
+
+/* PRODUCTS */
+
+.search-products{
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit, minmax(250px,1fr));
+
+  gap: 30px;
+}
+
+/* CARD */
+
+.search-card{
+  background: #1e293b;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.search-card:hover{
+  transform: translateY(-8px);
+}
+
+.search-card img{
+  width: 100%;
+
+  height: 250px;
+
+  object-fit: cover;
+}
+
+.search-card h3{
+  color: white;
+
+  padding: 15px 20px 8px;
+}
+
+.search-card p{
+  color: #94a3b8;
+
+  padding: 0 20px 20px;
+}
+
+
+.loading{
+  min-height: 100vh;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading h1{
+  color: white;
+  font-size: 32px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 700px){
+
+  .search-page{
+    padding: 120px 20px 50px;
+  }
+
+  .search-top h1{
+    font-size: 36px;
+  }
+
+}
+

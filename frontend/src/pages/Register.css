@@ -1,0 +1,47 @@
+.register-page{
+  min-height:100vh;
+  background:#0f172a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.register-container{
+  width:400px;
+  background:#1e293b;
+  padding:40px;
+  border-radius:15px;
+}
+
+.register-container h1{
+  color:white;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.register-container form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.register-container input{
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+.register-container button{
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  background:#6366f1;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.register-container button:hover{
+  background:#4f46e5;
+}
