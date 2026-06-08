@@ -1,86 +1,54 @@
 import "./Register.css";
 
 import { useState } from "react";
-
 import axios from "axios";
-
 import { toast } from "react-toastify";
-
 import { useNavigate } from "react-router-dom";
 
+import { BASE_URL } from "../config"; // ✔️ IMPORTANT ADD
+
 const Register = () => {
+  const navigate = useNavigate();
 
-  const navigate =
-    useNavigate();
-
-  const [user, setUser] =
-    useState({
-
-      name: "",
-
-      email: "",
-
-      password: "",
-
-    });
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
-
     setUser({
-
       ...user,
-
-      [e.target.name]:
-        e.target.value,
-
+      [e.target.name]: e.target.value,
     });
-
   };
 
-  const handleSubmit =
-    async (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      e.preventDefault();
+    try {
+      await axios.post(
+        `${BASE_URL}/api/auth/register`, // ✔️ FIXED HERE
+        user
+      );
 
-      try {
+      toast.success("Registration Successful ✅");
 
-        await axios.post(
-
-          "http://localhost:5000/api/auth/register",
-
-          user
-
-        );
-
-        toast.success(
-          "Registration Successful ✅"
-        );
-
-        navigate("/login");
-
-      } catch (error) {
-
-        toast.error(
-          error.response?.data?.message ||
+      navigate("/login");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
           "Registration Failed ❌"
-        );
-
-      }
-
-    };
+      );
+    }
+  };
 
   return (
-
     <section className="register-page">
-
       <div className="register-container">
-
         <h1>Create Account</h1>
 
-        <form
-          onSubmit={handleSubmit}
-        >
-
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
@@ -108,20 +76,11 @@ const Register = () => {
             required
           />
 
-          <button type="submit">
-
-            Register
-
-          </button>
-
+          <button type="submit">Register</button>
         </form>
-
       </div>
-
     </section>
-
   );
-
 };
 
 export default Register;

@@ -1,163 +1,98 @@
 import "./Admin.css";
 
-import {
-  useState,
-  useEffect,
-} from "react";
-
+import { useState, useEffect } from "react";
 import axios from "axios";
-
 import { toast } from "react-toastify";
+import { BASE_URL } from "../config";// ✅ NEW ADD
 
 const Admin = () => {
+  const [product, setProduct] = useState({
+    title: "",
+    price: "",
+    image: "",
+    description: "",
+    category: "",
+  });
 
-  const [product, setProduct] =
-    useState({
-      title: "",
-      price: "",
-      image: "",
-      description: "",
-      category: "",
-    });
+  const [products, setProducts] = useState([]);
+  const [editId, setEditId] = useState(null);
 
-  const [products, setProducts] =
-    useState([]);
-
-  const [editId, setEditId] =
-    useState(null);
-
-  const fetchProducts =
-    async () => {
-
-      try {
-
-        const res =
-          await axios.get(
-            "http://localhost:5000/api/products"
-          );
-
-        setProducts(res.data);
-
-      } catch (error) {
-
-        console.log(error);
-
-      }
-
-    };
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/products`); // ✅ FIXED
+      setProducts(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-
     fetchProducts();
-
   }, []);
 
   const handleChange = (e) => {
-
     setProduct({
       ...product,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
-
   };
 
-  const handleSubmit =
-    async (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      e.preventDefault();
-
-      try {
-
-        if (editId) {
-
-          await axios.put(
-            `http://localhost:5000/api/products/${editId}`,
-            product
-          );
-
-          toast.success(
-            "Product Updated ✅"
-          );
-
-        } else {
-
-          await axios.post(
-            "http://localhost:5000/api/products",
-            product
-          );
-
-          toast.success(
-            "Product Added ✅"
-          );
-
-        }
-
-        setProduct({
-          title: "",
-          price: "",
-          image: "",
-          description: "",
-          category: "",
-        });
-
-        setEditId(null);
-
-        fetchProducts();
-
-      } catch (error) {
-
-        toast.error(
-          "Failed ❌"
+    try {
+      if (editId) {
+        await axios.put(
+          `${BASE_URL}/api/products/${editId}`, // ✅ FIXED
+          product
         );
 
+        toast.success("Product Updated ✅");
+      } else {
+        await axios.post(
+          `${BASE_URL}/api/products`, // ✅ FIXED
+          product
+        );
+
+        toast.success("Product Added ✅");
       }
 
-    };
+      setProduct({
+        title: "",
+        price: "",
+        image: "",
+        description: "",
+        category: "",
+      });
 
-  const deleteProduct =
-    async (id) => {
+      setEditId(null);
 
-      try {
+      fetchProducts();
+    } catch (error) {
+      toast.error("Failed ❌");
+    }
+  };
 
-        await axios.delete(
-          `http://localhost:5000/api/products/${id}`
-        );
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}/api/products/${id}`); // ✅ FIXED
 
-        toast.success(
-          "Product Deleted ✅"
-        );
+      toast.success("Product Deleted ✅");
 
-        fetchProducts();
-
-      } catch (error) {
-
-        toast.error(
-          "Delete Failed ❌"
-        );
-
-      }
-
-    };
+      fetchProducts();
+    } catch (error) {
+      toast.error("Delete Failed ❌");
+    }
+  };
 
   return (
-
     <section className="admin">
-
       <div className="admin-container">
-
         <h1>
-
-          {editId
-            ? "Edit Product"
-            : "Add Product"}
-
+          {editId ? "Edit Product" : "Add Product"}
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-        >
-
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="title"
@@ -198,95 +133,47 @@ const Admin = () => {
           />
 
           <button type="submit">
-
-            {editId
-              ? "Update Product"
-              : "Add Product"}
-
+            {editId ? "Update Product" : "Add Product"}
           </button>
-
         </form>
 
         <div className="admin-products">
+          <h2>All Products</h2>
 
-          <h2>
-            All Products
-          </h2>
+          {products.map((item) => (
+            <div key={item._id} className="admin-product">
+              <span>{item.title}</span>
+              <span>₹{item.price}</span>
 
-          {
+              <div>
+                <button
+                  onClick={() => {
+                    setProduct({
+                      title: item.title,
+                      price: item.price,
+                      image: item.image,
+                      description: item.description,
+                      category: item.category,
+                    });
 
-            products.map((item) => (
+                    setEditId(item._id);
+                  }}
+                >
+                  Edit
+                </button>
 
-              <div
-                key={item._id}
-                className="admin-product"
-              >
-
-                <span>
-                  {item.title}
-                </span>
-
-                <span>
-                  ₹{item.price}
-                </span>
-
-                <div>
-
-                  <button
-                    onClick={() => {
-
-                      setProduct({
-                        title:
-                          item.title,
-                        price:
-                          item.price,
-                        image:
-                          item.image,
-                        description:
-                          item.description,
-                        category:
-                          item.category,
-                      });
-
-                      setEditId(
-                        item._id
-                      );
-
-                    }}
-                  >
-
-                    Edit
-
-                  </button>
-
-                  <button
-                    onClick={() =>
-                      deleteProduct(
-                        item._id
-                      )
-                    }
-                  >
-
-                    Delete
-
-                  </button>
-
-                </div>
-
+                <button
+                  onClick={() => deleteProduct(item._id)}
+                >
+                  Delete
+                </button>
               </div>
-
-            ))
-
-          }
-
+            </div>
+          ))}
         </div>
-
       </div>
-
     </section>
-
   );
-
 };
 
 export default Admin;
